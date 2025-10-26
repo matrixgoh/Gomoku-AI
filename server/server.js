@@ -4,11 +4,18 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// Import route handlers
-import aiRoutes from './routes/ai.js';
+console.log('🚀 Starting Gomoku AI Server...');
+console.log('📍 Current working directory:', process.cwd());
+console.log('🔧 Node version:', process.version);
+console.log('📦 Environment:', process.env.NODE_ENV || 'development');
 
 // Load environment variables
 dotenv.config();
+
+// Import route handlers
+import aiRoutes from './routes/ai.js';
+
+console.log('✅ Dependencies loaded successfully');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -25,7 +32,24 @@ app.use(express.json());
 app.use('/api/ai', aiRoutes);
 
 // Serve static files from the client build
-app.use(express.static(path.join(__dirname, 'public')));
+const publicPath = path.join(__dirname, 'public');
+console.log('📁 Public directory path:', publicPath);
+
+// Check if public directory exists
+import fs from 'fs';
+if (fs.existsSync(publicPath)) {
+  console.log('✅ Public directory found');
+  const indexPath = path.join(publicPath, 'index.html');
+  if (fs.existsSync(indexPath)) {
+    console.log('✅ index.html found');
+  } else {
+    console.log('⚠️ index.html not found in public directory');
+  }
+} else {
+  console.log('❌ Public directory not found');
+}
+
+app.use(express.static(publicPath));
 
 // Catch-all handler: send back React's index.html file for any non-API routes
 app.get('*', (req, res) => {
@@ -54,8 +78,21 @@ app.use((err, req, res, next) => {
   });
 });
 
+// Global error handlers
+process.on('uncaughtException', (error) => {
+  console.error('Uncaught Exception:', error);
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+});
+
 app.listen(PORT, () => {
   console.log(`🚀 Gomoku AI Server running on port ${PORT}`);
-  console.log(`🌐 Open http://localhost:${PORT} to play the game`);
+  console.log(`🌐 Environment: ${process.env.NODE_ENV || 'development'}`);
   console.log(`💡 API available at http://localhost:${PORT}/api`);
+}).on('error', (error) => {
+  console.error('Server failed to start:', error);
+  process.exit(1);
 });

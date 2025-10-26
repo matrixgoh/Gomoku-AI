@@ -1,0 +1,7 @@
+{
+  "name": "iisnode.yml",
+  "nodeProcessCommandLine": "node server.js",
+  "watchedFiles": ["*.js", "routes/*.js", "services/*.js"],
+  "loggingEnabled": true,
+  "debuggingEnabled": false
+}
