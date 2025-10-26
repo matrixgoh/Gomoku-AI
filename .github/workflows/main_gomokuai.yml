@@ -173,4 +173,31 @@ jobs:
           # Try to access the main page
           echo "Checking main application..."
           curl -f -s "$WEBAPP_URL/" | head -5 || echo "Main page check failed"
+
+      - name: Fetch Kudu deployment logs (for debugging)
+        if: always()
+        env:
+          AZURE_WEBAPP_NAME: 'gomokuai'
+          AZURE_RESOURCE_GROUP: 'gomokuai_group'
+        run: |
+          echo "Retrieving publishing profile to access Kudu logs"
+          az webapp deployment list-publishing-profiles --name "$AZURE_WEBAPP_NAME" --resource-group "$AZURE_RESOURCE_GROUP" -o json > /tmp/publish.json
+          USER=$(jq -r '.[0].userName' /tmp/publish.json)
+          PWD=$(jq -r '.[0].userPWD' /tmp/publish.json)
+          LOG_URL="https://${AZURE_WEBAPP_NAME}-b7f4fxc7eagkb2gk.scm.southeastasia-01.azurewebsites.net/api/deployments/latest/log"
+          # Try the canonical scm hostname if above is not correct
+          FALLBACK_LOG_URL="https://${AZURE_WEBAPP_NAME}.scm.southeastasia-01.azurewebsites.net/api/deployments/latest/log"
+          echo "Attempting to fetch Kudu logs from $LOG_URL"
+          curl -u "$USER:$PWD" -sS "$LOG_URL" -o /tmp/kudu_log.txt || curl -u "$USER:$PWD" -sS "$FALLBACK_LOG_URL" -o /tmp/kudu_log.txt || echo "Failed to fetch Kudu logs"
+          echo "Kudu log snippet (last 200 lines):"
+          tail -n 200 /tmp/kudu_log.txt || true
+          echo "Uploading Kudu logs as artifact"
+          mkdir -p artifacts
+          cp /tmp/kudu_log.txt artifacts/kudu_deploy_log.txt || true
+      - name: Upload Kudu logs artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kudu-logs
+          path: artifacts/kudu_deploy_log.txt
           
