@@ -1,0 +1,114 @@
+<step title="BackgroundTrace" date="2025-10-26T08:34:51.856" instance="79f58c" url="/api/publish" method="POST" >
+  <step title="Updating shutdown sentinel last write time" date="2025-10-26T08:34:51.872" SemaphoreCount="7" /><!-- duration: 0ms -->
+  <step title="LockFile &apos;C:\home\site\locks\deployments.lock&apos; acquired" date="2025-10-26T08:34:51.872" /><!-- duration: 16ms -->
+  <step title="Creating temporary deployment" date="2025-10-26T08:34:51.888" /><!-- duration: 47ms -->
+  <step title="Performing fetch based deployment" date="2025-10-26T08:34:51.950" >
+    <step title="Fetching changes." date="2025-10-26T08:34:52.091" /><!-- duration: 16ms -->
+    <step title="Starting LocalZipHandler" date="2025-10-26T08:34:52.122" /><!-- duration: 0ms -->
+    <step title="Cleaning up temp folders from previous zip deployments and extracting pushed zip file C:\local\Temp\zipdeploy\s0cx0hpd.zip (5.14 MB) to C:\local\Temp\zipdeploy\extracted" date="2025-10-26T08:34:52.153" /><!-- duration: 0ms -->
+    <step title="Cleaning up temp folders from previous zip deployments and extracting pushed zip file C:\local\Temp\zipdeploy\s0cx0hpd.zip (5.14 MB) to C:\local\Temp\zipdeploy\extracted" date="2025-10-26T08:34:52.169" >
+      <step title="Renaming extractTargetDirectory(C:\local\Temp\zipdeploy\extracted) to tempDirectory(C:\local\Temp\zipdeploy\pxjunzmd.evu)" date="2025-10-26T08:34:52.169" /><!-- duration: 16ms -->
+      <step title="Extracting 1184 entries to C:\local\Temp\zipdeploy\extracted directory" date="2025-10-26T08:34:52.200" >
+        <step title="Extracting to C:\local\Temp\zipdeploy\extracted\deploy.cmd ..." date="2025-10-26T08:34:52.216" /><!-- duration: 16ms -->
+        <step title="Extracting to C:\local\Temp\zipdeploy\extracted\package-lock.json ..." date="2025-10-26T08:34:52.231" /><!-- duration: 16ms -->
+        <step title="Extracting to C:\local\Temp\zipdeploy\extracted\package.json ..." date="2025-10-26T08:34:52.247" /><!-- duration: 0ms -->
+        <step title="Extracting to C:\local\Temp\zipdeploy\extracted\server.js ..." date="2025-10-26T08:34:52.263" /><!-- duration: 0ms -->
+        <step title="Extracting to C:\local\Temp\zipdeploy\extracted\startup.sh ..." date="2025-10-26T08:34:52.263" /><!-- duration: 16ms -->
+        <step title="Omitting extracting file traces ..." date="2025-10-26T08:34:52.278" /><!-- duration: 0ms -->
+      </step><!-- duration: 844ms -->
+    </step><!-- duration: 875ms -->
+    <step title="Before sending BuildRequestReceived status to /api/updatedeploystatus" date="2025-10-26T08:34:53.060" /><!-- duration: 0ms -->
+    <step title="DeploymentManager.Deploy(id:4bc4e13a67994769a074a057589532bc)" date="2025-10-26T08:34:53.060" >
+      <step title="Collecting changeset information" date="2025-10-26T08:34:53.091" /><!-- duration: 78ms -->
+      <step title="Updating submodules" date="2025-10-26T08:34:53.169" >
+        <step title="Updating submodules." date="2025-10-26T08:34:53.216" /><!-- duration: 0ms -->
+      </step><!-- duration: 63ms -->
+      <step title="Preparing deployment for commit id &apos;4bc4e13a67&apos;." date="2025-10-26T08:34:53.278" /><!-- duration: 0ms -->
+      <step title="Determining deployment builder" date="2025-10-26T08:34:53.325" >
+        <step title="Builder is OneDeployBuilder" date="2025-10-26T08:34:53.325" /><!-- duration: 16ms -->
+      </step><!-- duration: 16ms -->
+      <step title="Copying SSH keys" date="2025-10-26T08:34:53.357" /><!-- duration: 16ms -->
+      <step title="Building" date="2025-10-26T08:34:53.372" >
+        <step title="Running build. Project type: OneDeploy" date="2025-10-26T08:34:53.419" /><!-- duration: 0ms -->
+        <step title="Copying the manifest" date="2025-10-26T08:34:53.466" /><!-- duration: 0ms -->
+        <step title="Clean deploying to C:\home\site\wwwroot" date="2025-10-26T08:34:53.528" /><!-- duration: 0ms -->
+        <step title="Generating deployment script." date="2025-10-26T08:34:53.575" /><!-- duration: 16ms -->
+        <step title="Generating deployment script" date="2025-10-26T08:34:53.591" >
+          <step title="Using cached version of the deployment script for command: -y --no-dot-deployment -r &quot;C:\local\Temp\zipdeploy\extracted&quot; -o &quot;C:\home\site\deployments\tools&quot; --basic --sitePath &quot;C:\local\Temp\zipdeploy\extracted&quot;" date="2025-10-26T08:34:53.638" /><!-- duration: 0ms -->
+          <step title="Using cached version of deployment script (command: &apos;azure -y --no-dot-deployment -r &quot;C:\local\Temp\zipdeploy\extracted&quot; -o &quot;C:\home\site\deployments\tools&quot; --basic --sitePath &quot;C:\local\Temp\zipdeploy\extracted&quot;&apos;)." date="2025-10-26T08:34:53.669" /><!-- duration: 0ms -->
+        </step><!-- duration: 94ms -->
+        <step title="Running deployment command..." date="2025-10-26T08:34:53.716" /><!-- duration: 0ms -->
+        <step title="Command: &quot;C:\home\site\deployments\tools\deploy.cmd&quot;" date="2025-10-26T08:34:53.732" /><!-- duration: 0ms -->
+        <step title="Executing external process" date="2025-10-26T08:34:53.747" type="process" path="starter.cmd" arguments="&quot;C:\home\site\deployments\tools\deploy.cmd&quot;" >
+          <step title="Handling Basic Web Site deployment." date="2025-10-26T08:34:53.903" /><!-- duration: 0ms -->
+          <step title="Creating app_offline.htm" date="2025-10-26T08:34:54.107" /><!-- duration: 16ms -->
+          <step title="KuduSync.NET from: &apos;C:\local\Temp\zipdeploy\extracted&apos; to: &apos;C:\home\site\wwwroot&apos;" date="2025-10-26T08:34:54.122" /><!-- duration: 16ms -->
+          <step title="Deleting file: &apos;components\Cell.tsx&apos;" date="2025-10-26T08:34:54.138" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;components\Controls.tsx&apos;" date="2025-10-26T08:34:54.153" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;components\GameBoard.tsx&apos;" date="2025-10-26T08:34:54.169" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;components\OIcon.tsx&apos;" date="2025-10-26T08:34:54.185" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;components\Scoreboard.tsx&apos;" date="2025-10-26T08:34:54.200" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;components\StatusDisplay.tsx&apos;" date="2025-10-26T08:34:54.216" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;components\XIcon.tsx&apos;" date="2025-10-26T08:34:54.232" /><!-- duration: 0ms -->
+          <step title="Deleting directory: &apos;components&apos;" date="2025-10-26T08:34:54.247" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;dist\index.html&apos;" date="2025-10-26T08:34:54.247" /><!-- duration: 16ms -->
+          <step title="Deleting file: &apos;dist\assets\index-DWaT6KLv.js&apos;" date="2025-10-26T08:34:54.263" /><!-- duration: 16ms -->
+          <step title="Deleting directory: &apos;dist\assets&apos;" date="2025-10-26T08:34:54.278" /><!-- duration: 16ms -->
+          <step title="Deleting directory: &apos;dist&apos;" date="2025-10-26T08:34:54.294" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;hooks\useGameSounds.ts&apos;" date="2025-10-26T08:34:54.310" /><!-- duration: 16ms -->
+          <step title="Deleting directory: &apos;hooks&apos;" date="2025-10-26T08:34:54.341" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;App.tsx&apos;" date="2025-10-26T08:34:54.341" /><!-- duration: 16ms -->
+          <step title="Deleting file: &apos;index.html&apos;" date="2025-10-26T08:34:54.357" /><!-- duration: 16ms -->
+          <step title="Deleting file: &apos;index.tsx&apos;" date="2025-10-26T08:34:54.372" /><!-- duration: 16ms -->
+          <step title="Deleting file: &apos;metadata.json&apos;" date="2025-10-26T08:34:54.388" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;README.md&apos;" date="2025-10-26T08:34:54.403" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;tsconfig.json&apos;" date="2025-10-26T08:34:54.419" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;types.ts&apos;" date="2025-10-26T08:34:54.450" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;vite.config.ts&apos;" date="2025-10-26T08:34:54.450" /><!-- duration: 16ms -->
+          <step title="Copying file: &apos;package-lock.json&apos;" date="2025-10-26T08:34:54.466" /><!-- duration: 16ms -->
+          <step title="Copying file: &apos;package.json&apos;" date="2025-10-26T08:34:54.482" /><!-- duration: 16ms -->
+          <step title="Copying file: &apos;server.js&apos;" date="2025-10-26T08:34:54.497" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;startup.sh&apos;" date="2025-10-26T08:34:54.513" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;node_modules\@babel\code-frame\LICENSE&apos;" date="2025-10-26T08:34:54.528" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;node_modules\@babel\code-frame\package.json&apos;" date="2025-10-26T08:34:54.544" /><!-- duration: 16ms -->
+          <step title="Deleting file: &apos;node_modules\@babel\code-frame\README.md&apos;" date="2025-10-26T08:34:54.560" /><!-- duration: 16ms -->
+          <step title="Deleting file: &apos;node_modules\@babel\code-frame\lib\index.js&apos;" date="2025-10-26T08:34:54.575" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;node_modules\@babel\code-frame\lib\index.js.map&apos;" date="2025-10-26T08:34:54.591" /><!-- duration: 0ms -->
+          <step title="Deleting directory: &apos;node_modules\@babel\code-frame\lib&apos;" date="2025-10-26T08:34:54.607" /><!-- duration: 0ms -->
+          <step title="Deleting directory: &apos;node_modules\@babel\code-frame&apos;" date="2025-10-26T08:34:54.622" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;node_modules\@babel\compat-data\corejs2-built-ins.js&apos;" date="2025-10-26T08:34:54.638" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;node_modules\@babel\compat-data\corejs3-shipped-proposals.js&apos;" date="2025-10-26T08:34:54.653" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;node_modules\@babel\compat-data\LICENSE&apos;" date="2025-10-26T08:34:54.669" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;node_modules\@babel\compat-data\native-modules.js&apos;" date="2025-10-26T08:34:54.685" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;node_modules\@babel\compat-data\overlapping-plugins.js&apos;" date="2025-10-26T08:34:54.700" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;node_modules\@babel\compat-data\package.json&apos;" date="2025-10-26T08:34:54.700" /><!-- duration: 16ms -->
+          <step title="Deleting file: &apos;node_modules\@babel\compat-data\plugin-bugfixes.js&apos;" date="2025-10-26T08:34:54.716" /><!-- duration: 16ms -->
+          <step title="Deleting file: &apos;node_modules\@babel\compat-data\plugins.js&apos;" date="2025-10-26T08:34:54.732" /><!-- duration: 16ms -->
+          <step title="Deleting file: &apos;node_modules\@babel\compat-data\README.md&apos;" date="2025-10-26T08:34:54.747" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;node_modules\@babel\compat-data\data\corejs2-built-ins.json&apos;" date="2025-10-26T08:34:54.763" /><!-- duration: 16ms -->
+          <step title="Deleting file: &apos;node_modules\@babel\compat-data\data\corejs3-shipped-proposals.json&apos;" date="2025-10-26T08:34:54.794" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;node_modules\@babel\compat-data\data\native-modules.json&apos;" date="2025-10-26T08:34:54.810" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;node_modules\@babel\compat-data\data\overlapping-plugins.json&apos;" date="2025-10-26T08:34:54.825" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;node_modules\@babel\compat-data\data\plugin-bugfixes.json&apos;" date="2025-10-26T08:34:54.825" /><!-- duration: 16ms -->
+          <step title="Deleting file: &apos;node_modules\@babel\compat-data\data\plugins.json&apos;" date="2025-10-26T08:34:54.841" /><!-- duration: 16ms -->
+          <step title="Omitting next output lines..." date="2025-10-26T08:34:54.857" /><!-- duration: 16ms -->
+          <step title="Processed 3403 files..." date="2025-10-26T08:35:14.203" /><!-- duration: 0ms -->
+          <step title="Finished successfully." date="2025-10-26T08:35:17.391" /><!-- duration: 0ms -->
+        </step><!-- duration: 23659ms -->
+        <step title="Build completed succesfully." date="2025-10-26T08:35:17.438" /><!-- duration: 16ms -->
+        <step title="Running post deployment command(s)..." date="2025-10-26T08:35:17.500" /><!-- duration: 0ms -->
+        <step title="Requesting site restart" date="2025-10-26T08:35:17.547" /><!-- duration: 16ms -->
+        <step title="Requesting site restart" date="2025-10-26T08:35:17.563" /><!-- duration: 0ms -->
+        <step title="Requesting site restart. Attempt #1" date="2025-10-26T08:35:17.609" /><!-- duration: 16ms -->
+        <step title="Requesting site restart. Attempt #1" date="2025-10-26T08:35:17.625" /><!-- duration: 0ms -->
+        <step title="Successfully requested a restart. Attempt #1" date="2025-10-26T08:35:17.953" /><!-- duration: 16ms -->
+        <step title="Successfully requested a restart. Attempt #1" date="2025-10-26T08:35:17.969" /><!-- duration: 0ms -->
+        <step title="Deployment successful. DEPLOYMENTINFO: deploymentPath = OneDeploy, deployer = OneDeploy, os = windows, sku = Free, siteName = gomokuai, siteHostName = gomokuai-b7f4fxc7eagkb2gk.southeastasia-01.azurewebsites.net, deploymentStatus = Success" date="2025-10-26T08:35:18.016" /><!-- duration: 0ms -->
+      </step><!-- duration: 24753ms -->
+    </step><!-- duration: 25081ms -->
+    <step title="Cleaning up temp files" date="2025-10-26T08:35:18.141" /><!-- duration: 16ms -->
+    <step title="Skip function trigger and logicapp sync because function is not enabled." date="2025-10-26T08:35:18.156" /><!-- duration: 16ms -->
+  </step><!-- duration: 26237ms -->
+  <step title="LockFile &apos;C:\home\site\locks\deployments.lock&apos; released" date="2025-10-26T08:35:18.188" /><!-- duration: 0ms -->
+  <step title="Deleting shutdown sentinel file" date="2025-10-26T08:35:18.203" SemaphoreCount="8" /><!-- duration: 0ms -->
+</step><!-- duration: 26362ms -->

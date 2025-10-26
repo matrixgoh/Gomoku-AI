@@ -12,11 +12,11 @@
     "start": "node server.js",
     "start:esm": "node server.js",
     "start:simple": "node simple-server.cjs",
-  "dev": "node --watch server.js",
+    "dev": "node --watch server.js",
     "build": "npm run build:client",
     "build:client": "cd ../client && npm run build && cp -r dist/* ../server/public/",
     "setup": "npm install && cd ../client && npm install",
-  "serve": "node server.js"
+    "serve": "node server.js"
   },
   "dependencies": {
     "express": "^4.18.2",

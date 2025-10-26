@@ -1,0 +1,38 @@
+<step title="BackgroundTrace" date="2025-10-26T09:09:38.147" instance="79f58c" url="/api/publish" method="POST" >
+  <step title="Updating shutdown sentinel last write time" date="2025-10-26T09:09:38.162" SemaphoreCount="7" /><!-- duration: 0ms -->
+  <step title="LockFile &apos;C:\home\site\locks\deployments.lock&apos; acquired" date="2025-10-26T09:09:38.178" /><!-- duration: 0ms -->
+  <step title="Creating temporary deployment" date="2025-10-26T09:09:38.178" /><!-- duration: 63ms -->
+  <step title="Performing fetch based deployment" date="2025-10-26T09:09:38.240" >
+    <step title="Fetching changes." date="2025-10-26T09:09:38.318" /><!-- duration: 16ms -->
+    <step title="Starting LocalZipHandler" date="2025-10-26T09:09:38.334" /><!-- duration: 16ms -->
+    <step title="Starting ExtractTriggers" date="2025-10-26T09:09:38.350" /><!-- duration: 16ms -->
+    <step title="Before sending BuildRequestReceived status to /api/updatedeploystatus" date="2025-10-26T09:09:38.412" /><!-- duration: 0ms -->
+    <step title="DeploymentManager.Deploy(id:b6c1fdb83cdb4715bcef6a76b8598f2e)" date="2025-10-26T09:09:38.428" >
+      <step title="Collecting changeset information" date="2025-10-26T09:09:38.443" /><!-- duration: 31ms -->
+      <step title="Updating submodules" date="2025-10-26T09:09:38.506" >
+        <step title="Updating submodules." date="2025-10-26T09:09:38.537" /><!-- duration: 16ms -->
+      </step><!-- duration: 47ms -->
+      <step title="Preparing deployment for commit id &apos;b6c1fdb83c&apos;." date="2025-10-26T09:09:38.600" /><!-- duration: 0ms -->
+      <step title="Determining deployment builder" date="2025-10-26T09:09:38.647" >
+        <step title="Builder is RunFromZipSiteBuilder" date="2025-10-26T09:09:38.647" /><!-- duration: 16ms -->
+      </step><!-- duration: 16ms -->
+      <step title="Copying SSH keys" date="2025-10-26T09:09:38.693" /><!-- duration: 0ms -->
+      <step title="Building" date="2025-10-26T09:09:38.709" >
+        <step title="Skipping build. Project type: Run-From-Zip" date="2025-10-26T09:09:38.756" /><!-- duration: 0ms -->
+        <step title="Skipping post build. Project type: Run-From-Zip" date="2025-10-26T09:09:38.803" /><!-- duration: 0ms -->
+        <step title="Requesting site restart" date="2025-10-26T09:09:38.850" /><!-- duration: 16ms -->
+        <step title="Requesting site restart" date="2025-10-26T09:09:38.865" /><!-- duration: 0ms -->
+        <step title="Requesting site restart. Attempt #1" date="2025-10-26T09:09:38.928" /><!-- duration: 0ms -->
+        <step title="Requesting site restart. Attempt #1" date="2025-10-26T09:09:38.928" /><!-- duration: 16ms -->
+        <step title="Successfully requested a restart. Attempt #1" date="2025-10-26T09:09:39.272" /><!-- duration: 0ms -->
+        <step title="Successfully requested a restart. Attempt #1" date="2025-10-26T09:09:39.287" /><!-- duration: 0ms -->
+        <step title="Deployment successful. DEPLOYMENTINFO: deploymentPath = OneDeploy, deployer = OneDeploy, os = windows, sku = Free, siteName = gomokuai, siteHostName = gomokuai-b7f4fxc7eagkb2gk.southeastasia-01.azurewebsites.net, deploymentStatus = Success" date="2025-10-26T09:09:39.334" /><!-- duration: 16ms -->
+      </step><!-- duration: 797ms -->
+    </step><!-- duration: 1078ms -->
+    <step title="Cleaning up temp files" date="2025-10-26T09:09:39.506" /><!-- duration: 16ms -->
+    <step title="Updating C:\home\data\SitePackages\packagename.txt with deployment 20251026090937.zip" date="2025-10-26T09:09:39.522" /><!-- duration: 62ms -->
+    <step title="Skip function trigger and logicapp sync because function is not enabled." date="2025-10-26T09:09:39.584" /><!-- duration: 0ms -->
+  </step><!-- duration: 1375ms -->
+  <step title="LockFile &apos;C:\home\site\locks\deployments.lock&apos; released" date="2025-10-26T09:09:39.615" /><!-- duration: 16ms -->
+  <step title="Deleting shutdown sentinel file" date="2025-10-26T09:09:39.631" SemaphoreCount="8" /><!-- duration: 0ms -->
+</step><!-- duration: 1500ms -->
