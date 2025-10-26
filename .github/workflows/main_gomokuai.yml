@@ -200,4 +200,28 @@ jobs:
         with:
           name: kudu-logs
           path: artifacts/kudu_deploy_log.txt
+
+      - name: Enable App Service filesystem logging (for diagnostics)
+        if: always()
+        run: |
+          az webapp log config --name gomokuai --resource-group gomokuai_group --application-logging filesystem --detailed-error-messages true --failed-request-tracing true
+
+      - name: Download App Service logs
+        if: always()
+        run: |
+          echo "Downloading App Service logs to /tmp/app_logs.zip"
+          az webapp log download --resource-group gomokuai_group --name gomokuai --log-file /tmp/app_logs.zip || true
+          mkdir -p artifacts
+          if [ -f /tmp/app_logs.zip ]; then
+            unzip -l /tmp/app_logs.zip || true
+            cp /tmp/app_logs.zip artifacts/app_logs.zip || true
+          else
+            echo "No app logs zip found"
+          fi
+      - name: Upload app logs artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-logs
+          path: artifacts/app_logs.zip
           
