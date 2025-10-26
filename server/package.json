@@ -9,8 +9,9 @@
     "npm": "10.x"
   },
   "scripts": {
-  "start": "node server.js",
-  "start:esm": "node server.js",
+    "start": "node server.js",
+    "start:esm": "node server.js",
+    "start:simple": "node simple-server.cjs",
   "dev": "node --watch server.js",
     "build": "npm run build:client",
     "build:client": "cd ../client && npm run build && cp -r dist/* ../server/public/",
