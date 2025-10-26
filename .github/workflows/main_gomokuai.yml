@@ -84,7 +84,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    environment: production
     permissions:
       id-token: write #This is required for requesting the JWT
       contents: read #This is required for actions/checkout
@@ -101,12 +100,12 @@ jobs:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_09FE046E7F1644D98588CEBD12422638 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_7E2A01D87834485EA047B6C9602B11CF }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_69FCC417DD604CD0B30BB5E8F7F7FE07 }}
+          allow-no-subscriptions: true
 
       - name: Set up application settings
         uses: azure/appservice-settings@v1
         with:
           app-name: 'gomokuai'
-          slot-name: 'production'
           app-settings-json: |
             [
               {
@@ -136,7 +135,6 @@ jobs:
         id: deploy-to-webapp
         with:
           app-name: 'gomokuai'
-          slot-name: 'Production'
           package: .
 
       - name: Health Check
