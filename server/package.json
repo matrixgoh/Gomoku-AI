@@ -9,12 +9,13 @@
     "npm": "10.x"
   },
   "scripts": {
-    "start": "node server.js",
-    "dev": "node --watch server.js",
+  "start": "node server.js",
+  "start:esm": "node server.js",
+  "dev": "node --watch server.js",
     "build": "npm run build:client",
     "build:client": "cd ../client && npm run build && cp -r dist/* ../server/public/",
     "setup": "npm install && cd ../client && npm install",
-    "serve": "node server.js"
+  "serve": "node server.js"
   },
   "dependencies": {
     "express": "^4.18.2",

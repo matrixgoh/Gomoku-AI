@@ -9,6 +9,6 @@ export PORT=${PORT:-8080}
 # Set production environment
 export NODE_ENV=production
 
-# Start the application
+# Start the application with CommonJS version for better Azure compatibility
 echo "Starting server on port $PORT"
-node server.js
+node server.cjs
