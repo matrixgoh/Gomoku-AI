@@ -1,8 +1,10 @@
+import { BoardState, ActivePlayer } from '../types';
+
 /**
  * Checks if a cell at a given index has any adjacent occupied cells.
  * This is used to narrow down the number of moves to evaluate.
  */
-const hasNeighbor = (index, board, size) => {
+const hasNeighbor = (index: number, board: BoardState, size: number): boolean => {
     const r = Math.floor(index / size);
     const c = index % size;
     for (let dr = -1; dr <= 1; dr++) {
@@ -22,7 +24,7 @@ const hasNeighbor = (index, board, size) => {
  * Checks if two indices are on the same line given a direction.
  * Prevents lines from "wrapping" around the board.
  */
-const isSameLine = (idx1, idx2, dir, size) => {
+const isSameLine = (idx1: number, idx2: number, dir: number, size: number): boolean => {
     if (idx1 < 0 || idx1 >= size * size || idx2 < 0 || idx2 >= size * size) return false;
     const r1 = Math.floor(idx1 / size);
     const c1 = idx1 % size;
@@ -40,7 +42,7 @@ const isSameLine = (idx1, idx2, dir, size) => {
  * Calculates a score for a potential move by evaluating the longest line of consecutive
  * pieces that would be formed.
  */
-const getScoreForMove = (index, player, board, size) => {
+const getScoreForMove = (index: number, player: ActivePlayer, board: BoardState, size: number): number => {
     const tempBoard = [...board];
     tempBoard[index] = player;
     const directions = [1, size, size + 1, size - 1]; // H, V, D\, D/
@@ -75,7 +77,7 @@ const getScoreForMove = (index, player, board, size) => {
     return maxScore;
 };
 
-export const getClassicAIMove = (board, size, aiPlayer) => {
+export const getClassicAIMove = (board: BoardState, size: number, aiPlayer: ActivePlayer): { move: { row: number, col: number }, thought: string } => {
     const opponent = aiPlayer === 'X' ? 'O' : 'X';
     let bestMove = { index: -1, score: -1 };
 
@@ -113,14 +115,8 @@ export const getClassicAIMove = (board, size, aiPlayer) => {
     // Fallback if no valid neighboring moves are found
     if (bestMove.index === -1) {
         const availableMoves = board.map((cell, index) => cell === null ? index : -1).filter(index => index !== -1);
-        if (availableMoves.length > 0) {
-            const fallbackIndex = availableMoves[Math.floor(Math.random() * availableMoves.length)];
-            bestMove.index = fallbackIndex;
-        }
-    }
-
-    if (bestMove.index === -1) {
-        return null; // No valid moves
+        const fallbackIndex = availableMoves[Math.floor(Math.random() * availableMoves.length)];
+        bestMove.index = fallbackIndex;
     }
 
     return {

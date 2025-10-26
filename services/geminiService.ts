@@ -1,19 +1,15 @@
 import { GoogleGenAI, Type } from "@google/genai";
+import { BoardState, ActivePlayer } from '../types';
 
 // Initialize the Gemini client
-let ai = null;
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
-const initializeGemini = () => {
-    if (!process.env.GEMINI_API_KEY) {
-        throw new Error('GEMINI_API_KEY environment variable is required');
-    }
-    if (!ai) {
-        ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-    }
-    return ai;
-};
+interface AIResponse {
+    move: { row: number, col: number };
+    thought: string;
+}
 
-function boardToString(board, size) {
+function boardToString(board: BoardState, size: number): string {
     let boardString = '';
     for (let r = 0; r < size; r++) {
         for (let c = 0; c < size; c++) {
@@ -25,15 +21,13 @@ function boardToString(board, size) {
     return boardString.trim();
 }
 
-export const getGeminiAIMove = async (board, size, aiPlayer) => {
-    try {
-        const geminiAI = initializeGemini();
-        const model = 'gemini-2.5-flash';
+export const getAIMove = async (board: BoardState, size: number, aiPlayer: ActivePlayer): Promise<AIResponse | null> => {
+    const model = 'gemini-2.5-flash';
 
-        const boardString = boardToString(board, size);
-        const humanPlayer = aiPlayer === 'X' ? 'O' : 'X';
+    const boardString = boardToString(board, size);
+    const humanPlayer = aiPlayer === 'X' ? 'O' : 'X';
 
-        const systemInstruction = `You are a world-class Gomoku (Five in a Row) AI.
+    const systemInstruction = `You are a world-class Gomoku (Five in a Row) AI.
 The game is played on a 15x15 board. The goal is to get exactly five of your pieces in a row (horizontally, vertically, or diagonally).
 You are playing as '${aiPlayer}'. The human player is '${humanPlayer}'.
 The board is represented as a 15x15 grid. '.' represents an empty cell.
@@ -43,13 +37,14 @@ Analyze the board and provide your best move. Your top priorities are:
 3. If the opponent has an open "three" that could become an unblockable "four", you should strongly consider blocking it.
 4. Look for opportunities to create your own threats, especially "open fours" or multiple "threes".
 Provide your response in JSON format. The JSON object must contain the move's 0-indexed 'row', 'col', and a brief 'thought' process explaining your strategic choice.`;
-        
-        const contents = `Current board state:
+    
+    const contents = `Current board state:
 ${boardString}
 
 You are player '${aiPlayer}'. What is your next move?`;
 
-        const response = await geminiAI.models.generateContent({
+    try {
+        const response = await ai.models.generateContent({
             model,
             contents,
             config: {
