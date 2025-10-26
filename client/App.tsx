@@ -135,7 +135,7 @@ const App: React.FC = () => {
             } else { // 'classic'
                 // Add a small delay for a more natural feel
                 await new Promise(resolve => setTimeout(resolve, 400));
-                aiResult = getClassicAIMove(gameState, boardSize, currentPlayer as ActivePlayer);
+                aiResult = await getClassicAIMove(gameState, boardSize, currentPlayer as ActivePlayer);
             }
 
             if (aiResult && aiResult.move !== undefined) {
