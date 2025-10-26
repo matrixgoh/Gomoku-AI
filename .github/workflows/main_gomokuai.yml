@@ -127,6 +127,14 @@ jobs:
               {
                 "name": "SCM_DO_BUILD_DURING_DEPLOYMENT",
                 "value": "false"
+              },
+              {
+                "name": "WEBSITE_RUN_FROM_PACKAGE",
+                "value": "1"
+              },
+              {
+                "name": "WEBSITE_ENABLE_SYNC_UPDATE_SITE", 
+                "value": "true"
               }
             ]
 
@@ -142,9 +150,14 @@ jobs:
           echo "Waiting for deployment to be ready..."
           sleep 30
           
+          # Get the actual deployment URL from Azure
+          WEBAPP_URL="https://gomokuai-b7f4fxc7eagkb2gk.southeastasia-01.azurewebsites.net"
+          echo "Testing deployment at: $WEBAPP_URL"
+          
           # Try to access the health endpoint
           for i in {1..5}; do
-            if curl -f -s https://gomokuai.azurewebsites.net/api/health; then
+            echo "Health check attempt $i of 5..."
+            if curl -f -s "$WEBAPP_URL/api/health"; then
               echo "✅ Health check passed"
               break
             else
@@ -155,5 +168,9 @@ jobs:
           
           # Check AI status endpoint
           echo "Checking AI services status..."
-          curl -f -s https://gomokuai.azurewebsites.net/api/ai/status || echo "AI status check failed"
+          curl -f -s "$WEBAPP_URL/api/ai/status" || echo "AI status check failed"
+          
+          # Try to access the main page
+          echo "Checking main application..."
+          curl -f -s "$WEBAPP_URL/" | head -5 || echo "Main page check failed"
           
