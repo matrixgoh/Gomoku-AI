@@ -51,15 +51,6 @@ if (fs.existsSync(publicPath)) {
 
 app.use(express.static(publicPath));
 
-// Catch-all handler: send back React's index.html file for any non-API routes
-app.get('*', (req, res) => {
-  if (!req.path.startsWith('/api')) {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-  } else {
-    res.status(404).json({ error: 'API endpoint not found' });
-  }
-});
-
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ 
@@ -67,6 +58,15 @@ app.get('/api/health', (req, res) => {
     timestamp: new Date().toISOString(),
     version: process.env.npm_package_version || '1.0.0'
   });
+});
+
+// Catch-all handler: send back React's index.html file for any non-API routes
+app.get('*', (req, res) => {
+  if (!req.path.startsWith('/api')) {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  } else {
+    res.status(404).json({ error: 'API endpoint not found' });
+  }
 });
 
 // Error handling middleware
